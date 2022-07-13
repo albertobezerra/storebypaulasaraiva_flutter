@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "232616721959",
+    "project_id": "storebypaulasaraiva-dc479",
+    "storage_bucket": "storebypaulasaraiva-dc479.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:232616721959:android:d76e9264422d9c12f31802",
+        "android_client_info": {
+          "package_name": "equipebezerradasilva.storebypaulasaraiva"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "232616721959-l2oj3n4m4jil1g8il32999al3fc7dmf5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA14U79i3peL0qptAnEmxbXKKKBUc2qOJE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "232616721959-l2oj3n4m4jil1g8il32999al3fc7dmf5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

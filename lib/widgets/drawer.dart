@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:storebypaulasaraiva/paginas/lojas.dart';
+import 'package:storebypaulasaraiva/paginas/pedidos.dart';
+import 'package:storebypaulasaraiva/paginas/produtos.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({Key? key}) : super(key: key);
@@ -9,7 +12,7 @@ class CustomDrawer extends StatelessWidget {
           decoration: BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                Color.fromARGB(255, 203, 236, 241),
+                Colors.white,
                 Colors.white,
               ],
               begin: Alignment.topCenter,
@@ -38,9 +41,9 @@ class CustomDrawer extends StatelessWidget {
                           child: Text(
                             'By Paula Saraiva',
                             style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black),
                           ),
                         ),
                         Container(
@@ -48,9 +51,9 @@ class CustomDrawer extends StatelessWidget {
                           child: Text(
                             'Store',
                             style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w400,
-                            ),
+                                fontSize: 14,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.black),
                           ),
                         ),
                         SizedBox(height: 20),
@@ -60,20 +63,15 @@ class CustomDrawer extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
-                                'Olá,',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
+                              TextButton(
+                                onPressed: () {},
+                                style: TextButton.styleFrom(
+                                  primary: Colors.white,
+                                  backgroundColor:
+                                      Color.fromARGB(255, 211, 118, 130),
+                                  onSurface: Colors.grey,
                                 ),
-                              ),
-                              GestureDetector(
-                                child: Text(
-                                  'Entre ou se cadastre',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: Theme.of(context).primaryColor),
-                                ),
-                                onTap: () {},
+                                child: Text('Entrar para comprar'),
                               )
                             ],
                           ),
@@ -86,9 +84,18 @@ class CustomDrawer extends StatelessWidget {
                                     EdgeInsets.zero, //tira o espaço padrão
                                 title: Row(
                                   children: <Widget>[
-                                    Icon(Icons.home),
+                                    Icon(
+                                      Icons.home,
+                                      color: Color.fromARGB(255, 211, 118, 130),
+                                    ),
                                     SizedBox(width: 20),
-                                    Text("Início")
+                                    Text(
+                                      "Início",
+                                      style: TextStyle(
+                                        color:
+                                            Color.fromARGB(255, 211, 118, 130),
+                                      ),
+                                    )
                                   ],
                                 ),
                                 onTap: () {},
@@ -103,7 +110,14 @@ class CustomDrawer extends StatelessWidget {
                                     Text("Produtos")
                                   ],
                                 ),
-                                onTap: () {},
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => Produtos(),
+                                    ),
+                                  );
+                                },
                               ),
                               ListTile(
                                 contentPadding:
@@ -115,7 +129,14 @@ class CustomDrawer extends StatelessWidget {
                                     Text("Lojas")
                                   ],
                                 ),
-                                onTap: () {},
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => Lojas(),
+                                    ),
+                                  );
+                                },
                               ),
                               ListTile(
                                 contentPadding:
@@ -127,7 +148,14 @@ class CustomDrawer extends StatelessWidget {
                                     Text("Meus pedidos")
                                   ],
                                 ),
-                                onTap: () {},
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => Pedidos(),
+                                    ),
+                                  );
+                                },
                               ),
                             ],
                           ),

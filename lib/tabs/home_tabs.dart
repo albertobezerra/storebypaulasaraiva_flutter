@@ -26,10 +26,9 @@ class HomeTab extends StatelessWidget {
         CustomScrollView(
           slivers: [
             SliverAppBar(
-              floating: true,
-              snap: true,
-              elevation: 0,
-              backgroundColor: Colors.transparent,
+              pinned: true,
+              elevation: 5,
+              backgroundColor: Color.fromARGB(255, 211, 118, 130),
               flexibleSpace: FlexibleSpaceBar(
                 title: Text('Novidades'),
                 centerTitle: true,

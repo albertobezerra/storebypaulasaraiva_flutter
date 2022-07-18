@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import '../homepage.dart';
@@ -182,10 +183,19 @@ class Produtos extends StatelessWidget {
           icon: Icon(Icons.menu),
         ),
       ),
-      body: Container(
-        child: Center(
-          child: Text('Aqui vai ter a lista de produtos'),
-        ),
+      body: FutureBuilder<QuerySnapshot>(
+        future: Firestore.instance.collection('categorias').getDocuments(),
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          } else {
+            return ListView(
+              children: [],
+            );
+          }
+        },
       ),
     );
   }

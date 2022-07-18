@@ -76,6 +76,7 @@ class CustomDrawer extends StatelessWidget {
                             ],
                           ),
                         ),
+                        SizedBox(height: 30),
                         Expanded(
                           child: ListView(
                             children: <Widget>[

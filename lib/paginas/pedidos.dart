@@ -69,6 +69,7 @@ class Pedidos extends StatelessWidget {
                               ],
                             ),
                           ),
+                          SizedBox(height: 30),
                           Expanded(
                             child: ListView(
                               children: <Widget>[
@@ -195,7 +196,7 @@ Widget _buildDrawerBack() => Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            Color.fromARGB(255, 203, 236, 241),
+            Colors.white,
             Colors.white,
           ],
           begin: Alignment.topCenter,

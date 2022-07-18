@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:storebypaulasaraiva/tabs/catogorias_tabs.dart';
 
 import '../homepage.dart';
 import 'lojas.dart';
@@ -70,6 +71,7 @@ class Produtos extends StatelessWidget {
                               ],
                             ),
                           ),
+                          SizedBox(height: 30),
                           Expanded(
                             child: ListView(
                               children: <Widget>[
@@ -172,7 +174,7 @@ class Produtos extends StatelessWidget {
           ],
         ),
       ),
-      backgroundColor: Color.fromARGB(255, 211, 118, 130),
+      backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 5,
         title: Text('Produtos'),
@@ -188,11 +190,21 @@ class Produtos extends StatelessWidget {
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
             return Center(
-              child: CircularProgressIndicator(),
+              child: Center(
+                child: CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                ),
+              ),
             );
           } else {
+            var dividedTiles = ListTile.divideTiles(
+                    tiles: snapshot.data!.documents.map((doc) {
+                      return CategoryTile(doc);
+                    }).toList(),
+                    color: Color.fromARGB(255, 211, 118, 130))
+                .toList();
             return ListView(
-              children: [],
+              children: dividedTiles,
             );
           }
         },

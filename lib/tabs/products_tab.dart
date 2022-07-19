@@ -2,11 +2,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:storebypaulasaraiva/tiles/category_tile.dart';
 
-class ProdutosTabs extends StatelessWidget {
+class ProductsTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<QuerySnapshot>(
-      future: Firestore.instance.collection('produtos').getDocuments(),
+      future: Firestore.instance.collection('products').getDocuments(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
           return Center(

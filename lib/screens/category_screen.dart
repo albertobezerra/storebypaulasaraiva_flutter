@@ -1,12 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:storebypaulasaraiva/data/produtos_data.dart';
+import 'package:storebypaulasaraiva/data/product_data.dart';
 
-import '../tiles/produtos_tile.dart';
+import '../tiles/product_tile.dart';
 
-class ProdutosScreen extends StatelessWidget {
+class CategoryScreen extends StatelessWidget {
   final DocumentSnapshot snapshot;
-  ProdutosScreen(this.snapshot);
+  CategoryScreen(this.snapshot);
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -31,9 +31,9 @@ class ProdutosScreen extends StatelessWidget {
           ),
           body: FutureBuilder<QuerySnapshot>(
             future: Firestore.instance
-                .collection('produtos')
+                .collection('products')
                 .document(snapshot.documentID)
-                .collection('Tipos')
+                .collection('items')
                 .getDocuments(),
             builder: (context, snapshot) {
               if (!snapshot.hasData) {
@@ -51,26 +51,30 @@ class ProdutosScreen extends StatelessWidget {
                     GridView.builder(
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
-                        mainAxisExtent: 4,
-                        crossAxisSpacing: 4,
-                        childAspectRatio: 0.65,
+                        mainAxisExtent: 250,
+                        crossAxisSpacing: 2,
+                        childAspectRatio: 0.1,
                       ),
                       itemCount: snapshot.data!.documents.length,
                       itemBuilder: (context, index) {
-                        return ProdutosTile(
-                            'grid',
-                            ProdutosData.fromDocument(
-                                snapshot.data!.documents[index]));
+                        return ProductTile(
+                          'grid',
+                          ProductData.fromDocument(
+                            snapshot.data!.documents[index],
+                          ),
+                        );
                       },
                     ),
                     ListView.builder(
-                      padding: EdgeInsets.all(4),
+                      padding: EdgeInsets.all(1),
                       itemCount: snapshot.data!.documents.length,
                       itemBuilder: (context, index) {
-                        return ProdutosTile(
-                            'lista',
-                            ProdutosData.fromDocument(
-                                snapshot.data!.documents[index]));
+                        return ProductTile(
+                          'lista',
+                          ProductData.fromDocument(
+                            snapshot.data!.documents[index],
+                          ),
+                        );
                       },
                     )
                   ],

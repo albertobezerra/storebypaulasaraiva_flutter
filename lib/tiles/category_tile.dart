@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:storebypaulasaraiva/screens/produtos_screen.dart';
+import 'package:storebypaulasaraiva/screens/category_screen.dart';
 
 class CategoryTiles extends StatelessWidget {
   final DocumentSnapshot snapshot;
@@ -11,14 +11,14 @@ class CategoryTiles extends StatelessWidget {
       leading: CircleAvatar(
         radius: 25,
         backgroundColor: Colors.transparent,
-        backgroundImage: NetworkImage(snapshot.data['img']),
+        backgroundImage: NetworkImage(snapshot.data['url']),
       ),
       title: Text(snapshot.data['title']),
       trailing: Icon(Icons.keyboard_arrow_right,
           color: Color.fromARGB(255, 211, 118, 130)),
       onTap: () {
         Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => ProdutosScreen(snapshot)));
+            MaterialPageRoute(builder: (context) => CategoryScreen(snapshot)));
       },
     );
   }

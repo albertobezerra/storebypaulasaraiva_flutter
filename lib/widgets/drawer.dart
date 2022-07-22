@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:storebypaulasaraiva/screens/login.dart';
 import 'package:storebypaulasaraiva/tiles/drawer_tile.dart';
 
 class CustomDrawer extends StatelessWidget {
@@ -57,7 +58,11 @@ class CustomDrawer extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.of(context).pushReplacement(
+                                  MaterialPageRoute(
+                                      builder: (context) => LoginScreen()));
+                            },
                             style: TextButton.styleFrom(
                               primary: Colors.white,
                               backgroundColor:

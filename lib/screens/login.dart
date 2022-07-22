@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'cadastro.dart';
+
 class LoginScreen extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
   @override
@@ -84,6 +86,31 @@ class LoginScreen extends StatelessWidget {
                     style: TextStyle(),
                   ),
                 ),
+              ),
+              SizedBox(height: 40),
+              Center(
+                child: Text(
+                  'Ainda não tem seu cadastro?',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w300,
+                  ),
+                ),
+              ),
+              SizedBox(height: 16),
+              SizedBox(
+                height: 44,
+                child: TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(builder: (context) => Cadastro()));
+                    },
+                    style: TextButton.styleFrom(
+                      primary: Colors.white,
+                      backgroundColor: Color.fromARGB(255, 211, 118, 130),
+                      onSurface: Colors.grey,
+                    ),
+                    child: Text('Clique aqui para se cadastrar!')),
               )
             ],
           )),

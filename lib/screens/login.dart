@@ -4,11 +4,21 @@ import 'package:storebypaulasaraiva/models/user_model.dart';
 
 import 'cadastro.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
+  final _emailController = TextEditingController();
+  final _passController = TextEditingController();
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Color.fromARGB(255, 211, 118, 130),
@@ -28,6 +38,7 @@ class LoginScreen extends StatelessWidget {
               padding: EdgeInsets.all(16),
               children: [
                 TextFormField(
+                  controller: _emailController,
                   decoration: InputDecoration(
                     hintText: 'E-mail',
                     enabledBorder: OutlineInputBorder(
@@ -48,6 +59,7 @@ class LoginScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 16),
                 TextFormField(
+                  controller: _passController,
                   decoration: InputDecoration(
                     hintText: 'Senha',
                     enabledBorder: OutlineInputBorder(
@@ -84,7 +96,12 @@ class LoginScreen extends StatelessWidget {
                   child: TextButton(
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {}
-                      model.signIn();
+                      model.signIn(
+                        email: _emailController.text,
+                        pass: _passController.text,
+                        onSucess: _onSucess,
+                        onFail: _onFail,
+                      );
                     },
                     style: TextButton.styleFrom(
                       primary: Colors.white,
@@ -128,5 +145,17 @@ class LoginScreen extends StatelessWidget {
         },
       ),
     );
+  }
+
+  void _onSucess() {
+    Navigator.of(context).pop();
+  }
+
+  void _onFail() {
+    _scaffoldKey.currentState?.showSnackBar(SnackBar(
+      content: Text('Erro no login'),
+      backgroundColor: Colors.red,
+      duration: Duration(seconds: 2),
+    ));
   }
 }

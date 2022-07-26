@@ -5,7 +5,7 @@ import 'package:scoped_model/scoped_model.dart';
 
 class UserModel extends Model {
   FirebaseAuth _auth = FirebaseAuth.instance;
-  late FirebaseUser firebaseUser;
+  FirebaseUser? firebaseUser;
 
   Map<String, dynamic> userData = Map();
 
@@ -31,7 +31,7 @@ class UserModel extends Model {
       isLoading = false;
       notifyListeners();
     }).catchError((e) {
-      onFail;
+      onFail();
       isLoading = false;
       notifyListeners();
     });
@@ -47,13 +47,26 @@ class UserModel extends Model {
     notifyListeners();
   }
 
+  void singOut() async {
+    await _auth.signOut();
+
+    userData = Map();
+    firebaseUser = null;
+
+    notifyListeners();
+  }
+
   void recoverPass() {}
+
+  bool isLoggedIn() {
+    return firebaseUser != null;
+  }
 
   Future<Null> _saveUserData(Map<String, dynamic> userData) async {
     this.userData = userData;
     await Firestore.instance
         .collection('user')
-        .document(firebaseUser.uid)
+        .document(firebaseUser?.uid)
         .setData(userData);
   }
 }

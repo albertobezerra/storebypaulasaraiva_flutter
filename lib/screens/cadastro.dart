@@ -18,9 +18,12 @@ class _CadastroState extends State<Cadastro> {
 
   final _formKey = GlobalKey<FormState>();
 
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        key: _scaffoldKey,
         appBar: AppBar(
           elevation: 0,
           backgroundColor: Color.fromARGB(255, 211, 118, 130),
@@ -176,7 +179,22 @@ class _CadastroState extends State<Cadastro> {
         ));
   }
 
-  void _onSucess() {}
+  void _onSucess() {
+    _scaffoldKey.currentState?.showSnackBar(SnackBar(
+      content: Text('Tudo certo! Vamos comprar?'),
+      backgroundColor: Color.fromARGB(255, 211, 118, 130),
+      duration: Duration(seconds: 2),
+    ));
+    Future.delayed(Duration(seconds: 2)).then((_) {
+      Navigator.of(context).pop();
+    });
+  }
 
-  void _onFail() {}
+  void _onFail() {
+    _scaffoldKey.currentState?.showSnackBar(SnackBar(
+      content: Text('Ixei, deu algo errado!'),
+      backgroundColor: Colors.red,
+      duration: Duration(seconds: 2),
+    ));
+  }
 }

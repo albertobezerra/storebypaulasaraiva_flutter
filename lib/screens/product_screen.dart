@@ -1,6 +1,10 @@
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
+import 'package:storebypaulasaraiva/data/cart_product.dart';
 import 'package:storebypaulasaraiva/data/product_data.dart';
+import 'package:storebypaulasaraiva/models/cart_model.dart';
+import 'package:storebypaulasaraiva/models/user_model.dart';
+import 'package:storebypaulasaraiva/screens/login.dart';
 
 class ProdutcScreen extends StatefulWidget {
   final ProductData product;
@@ -118,9 +122,25 @@ class _ProdutcScreenState extends State<ProdutcScreen> {
                       backgroundColor: Color.fromARGB(255, 211, 118, 130),
                       onSurface: Colors.grey,
                     ),
-                    onPressed: size != null ? () {} : null,
+                    onPressed: size != null
+                        ? () {
+                            if (UserModel.of(context).isLoggedIn()) {
+                              CartProduct cartProduct = CartProduct();
+                              cartProduct.size = size;
+                              cartProduct.quantity = 1;
+                              cartProduct.pid = product.id;
+                              cartProduct.category = product.category;
+                              CartModel.of(context).addCartItem(cartProduct);
+                            } else {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => LoginScreen()));
+                            }
+                          }
+                        : null,
                     child: Text(
-                      'Adicionar ao carinho',
+                      UserModel.of(context).isLoggedIn()
+                          ? 'Adicionar ao carinho'
+                          : 'Faça login para comprar',
                     ),
                   ),
                 ),

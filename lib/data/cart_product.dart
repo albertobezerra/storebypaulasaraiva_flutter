@@ -3,29 +3,31 @@ import 'package:storebypaulasaraiva/data/product_data.dart';
 
 class CartProduct {
   late String cid;
-  late String categoty;
+  late String? category;
   late String pid;
 
   late int quantity;
 
-  late String size;
+  late String? size;
 
-  late ProductData productData;
+  ProductData? productData;
+
+  CartProduct();
 
   CartProduct.fromDocument(DocumentSnapshot document) {
     cid = document.documentID;
-    categoty = document.data['category'];
+    category = document.data['category'];
     pid = document.data['pid'];
     quantity = document.data['quantity'];
     size = document.data['size'];
   }
   Map<String, dynamic> toMap() {
     return {
-      'category': categoty,
+      'category': category,
       'pid': pid,
       'quantity': quantity,
       'size': size,
-      'product': productData.toResumedMap()
+      'product': productData?.toResumedMap()
     };
   }
 }

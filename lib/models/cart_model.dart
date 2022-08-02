@@ -7,6 +7,7 @@ import 'package:storebypaulasaraiva/models/user_model.dart';
 class CartModel extends Model {
   late UserModel user;
   List<CartProduct> products = [];
+  bool isLoading = false;
   CartModel(this.user);
 
   static CartModel of(BuildContext context) =>

@@ -17,6 +17,7 @@ class ProdutcScreen extends StatefulWidget {
 class _ProdutcScreenState extends State<ProdutcScreen> {
   final ProductData product;
   String? size;
+  late String category;
   _ProdutcScreenState(this.product);
   @override
   Widget build(BuildContext context) {
